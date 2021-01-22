@@ -139,7 +139,7 @@ O retorno é o mesmo da chamada anterior, um array de objetos contendo todos que
 
 ### LOCAR UM FILME
 
-para locar um filme você deve fazer um ```POST``` para ```/rents´´´ com a seguinte estrutura:
+para locar um filme você deve fazer um ```POST``` para ```/rents``` com a seguinte estrutura:
 
 ```
 {
