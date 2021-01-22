@@ -1,4 +1,5 @@
 import ICreateUserDTO from '../dtos/ICreateUserDTO';
+import AppError from '../helpers/AppError';
 import User from '../models/User';
 import IHashProvider from '../providers/models/IHashProvider';
 import IUsersRepository from '../repositories/interfaces/IUsersRepository';
@@ -15,7 +16,7 @@ class CreateUserService {
         const userExists = await this.usersRepository.findByEmail(email);
 
         if (userExists) {
-            throw new Error('E-mail already in use');
+            throw new AppError('E-mail already in use');
         }
 
         const hashedPassword = await this.hashProvider.generateHash(password);

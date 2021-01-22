@@ -1,6 +1,7 @@
 import { Request, Response, NextFunction, request } from 'express';
 import { verify } from 'jsonwebtoken';
 import authConfig from '../config/AuthConfig';
+import AppError from '../helpers/AppError';
 
 interface ITokenPayload {
     sub: string;
@@ -14,7 +15,7 @@ export default function checkAuthentication(
     const authHeader = req.headers.authorization;
 
     if (!authHeader) {
-        throw new Error('JWT token is missing');
+        throw new AppError('JWT token is missing', 400);
     }
 
     const [, token] = authHeader.split(' ');

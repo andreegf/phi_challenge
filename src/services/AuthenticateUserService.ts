@@ -1,5 +1,6 @@
 import { sign } from 'jsonwebtoken';
 import authConfig from '../config/AuthConfig';
+import AppError from '../helpers/AppError';
 import User from '../models/User';
 import IHashProvider from '../providers/models/IHashProvider';
 import IUsersRepository from '../repositories/interfaces/IUsersRepository';
@@ -24,7 +25,7 @@ class AuthenticateUserService {
         const userExists = await this.usersRepository.findByEmail(email);
 
         if (!userExists) {
-            throw new Error('Invalid email/password');
+            throw new AppError('Invalid email/password');
         }
 
         const passwordMatches = await this.hashProvider.compareHash(
@@ -33,7 +34,7 @@ class AuthenticateUserService {
         );
 
         if (!passwordMatches) {
-            throw new Error('invalid email/password');
+            throw new AppError('invalid email/password');
         }
 
         const { secret, expiresIn } = authConfig.jwt;

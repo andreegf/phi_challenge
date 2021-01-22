@@ -1,4 +1,5 @@
 import { getRepository, ILike, Like, MoreThan, Repository } from 'typeorm';
+import ICreateMovieDTO from '../dtos/ICreateMovieDTO';
 import Movie from '../models/Movie';
 import IMoviesRepository from './interfaces/IMoviesRepository';
 
@@ -27,6 +28,26 @@ class MoviesRepository implements IMoviesRepository {
         });
 
         return movies;
+    }
+
+    public async findById(id: string): Promise<Movie | void> {
+        const movie = await this.ormRepository.findOne(id);
+
+        return movie;
+    }
+
+    public async save(movie: Movie): Promise<Movie> {
+        await this.ormRepository.save(movie);
+
+        return movie;
+    }
+
+    public async create(movie_data: ICreateMovieDTO): Promise<Movie> {
+        const movie = await this.ormRepository.create(movie_data);
+
+        await this.ormRepository.save(movie);
+
+        return movie;
     }
 }
 

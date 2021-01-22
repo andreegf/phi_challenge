@@ -29,13 +29,14 @@ export default class CreateRents1611291670845 implements MigrationInterface {
                         isNullable: false,
                     },
                     {
-                        name: 'start-date',
+                        name: 'start_date',
                         type: 'timestamp with time zone',
                         isNullable: false,
                     },
                     {
-                        name: 'return-date',
+                        name: 'return_date',
                         type: 'timestamp with time zone',
+                        isNullable: true,
                     },
                     {
                         name: 'created_at',
