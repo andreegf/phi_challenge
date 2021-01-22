@@ -1,3 +1,3 @@
 node_modules
-config/AuthConfig.ts
+src/config/AuthConfig.ts
 ormconfig.json
